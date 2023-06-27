@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ssh -i ~/.ssh/school -o "IdentitiesOnly yes" -o "StrictHostKeyCkecking no" ubuntu@41.75.185.175
+ssh -i ~/.ssh/school -o "IdentitiesOnly=yes" -o "StrictHostKeyCkecking=no" ubuntu@41.75.185.175
