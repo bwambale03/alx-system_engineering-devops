@@ -1,4 +1,6 @@
 # config file for my client server
+include stdlib
+
 file_line { 'Turn off passwd auth':
   path  => '/etc/ssh/sshd_config',
   line  => 'PasswordAuthentication no',
