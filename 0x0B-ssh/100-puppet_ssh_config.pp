@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # config file for my client server
 include stdlib
 
