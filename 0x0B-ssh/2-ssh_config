@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-cat <<EOF > ~/.ssh/config
-Host <your_server_ip>
+Host 41.75.170.217
   IdentityFile ~/.ssh/school
   PreferredAuthentications publickey
   PasswordAuthentication no
-EOF
