@@ -16,4 +16,3 @@ file_line { 'Declare identity file':
   match => '^#?IdentityFile\s+',
   replace => true,
 }
-
