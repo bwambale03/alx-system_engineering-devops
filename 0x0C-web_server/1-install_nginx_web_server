@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Script that installs Nginx server
+# This script installs and configures Nginx on an Ubuntu 16.04 LTS machine
 
 set -euo pipefail
 
