@@ -1,19 +1,6 @@
 #!/usr/bin/env bash
 # Script that installs Nginx server
-
-set -e
-
-# Update package lists
-apt update
-
-# Install Nginx
-apt install -y nginx
-
-# Create a default index.html file with "Hello World!" message
+apt-get -y update
+apt-get -y install nginx
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-
-# Restart Nginx
-service nginx restart
-
-# Display success message
-echo "Nginx has been installed and configured successfully!"
+service nginx start
