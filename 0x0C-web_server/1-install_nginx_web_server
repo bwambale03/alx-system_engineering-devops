@@ -8,10 +8,10 @@ apt-get update
 apt-get install -y nginx
 
 # Configure Nginx to listen on port 80
-sed -i 's/# listen 80/listen 80/' /etc/nginx/sites-available/default
+sed -i 's/^\s*listen\s*\(.*\)$/\tlisten 80;/g' /etc/nginx/sites-available/default
 
 # Restart Nginx
 service nginx restart
 
 # Create a default index.html file with "Hello World!"
-echo "Hello World!" > /var/www/html/index.html
+echo "Hello World!" | tee /var/www/html/index.html
