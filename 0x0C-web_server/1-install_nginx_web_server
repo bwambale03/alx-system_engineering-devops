@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-# This script installs and configures Nginx on an Ubuntu machine
+# This script installs and configures Nginx on an Ubuntu 16.04 LTS machine
+
+set -euo pipefail
 
 # Update the system
-apt update
+sudo apt update
 
 # Install Nginx
-apt install -y nginx
+sudo apt install -y nginx
 
 # Configure Nginx
-tee /etc/nginx/sites-available/default >/dev/null <<'EOF'
+sudo tee /etc/nginx/sites-available/default >/dev/null <<'EOF'
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
@@ -22,4 +24,4 @@ server {
 EOF
 
 # Restart Nginx
-service nginx restart
+sudo service nginx restart
