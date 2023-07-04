@@ -1,21 +1,7 @@
 #!/usr/bin/env bash
-# This script configures Nginx to perform the redirection
-
-# Install Nginx if not already installed
-apt-get update
-apt-get install -y nginx
-
-# Create a redirection configuration file
-cat > /etc/nginx/conf.d/redirect.conf << EOF
-server {
-    listen 80;
-    server_name _;
-    
-    location /redirect_me {
-        return 301 https://www.example.com/;
-    }
-}
-EOF
-
-# Restart Nginx to apply the configuration
-service nginx restart
+# Script that installs Nginx server and redirects /redirect_me
+apt-get -y update
+apt-get -y install nginx
+echo "Hello World!" > /var/www/html/index.nginx-sirtuns4real.html
+sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/luischaparroc permanent;/" /etc/nginx/sites-available/default
+service nginx start
