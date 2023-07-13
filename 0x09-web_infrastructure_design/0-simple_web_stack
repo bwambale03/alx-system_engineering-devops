@@ -1,0 +1,34 @@
+https://imgur.com/hwBmzba
+
+// for  user wanting to access your website.
+    User enters www.foobar.com in their web browser.
+
+    The user's device sends a DNS (Domain Name System) request to the configured DNS resolver to translate the domain name (www.foobar.com) into an IP address.
+
+    The DNS resolver checks its cache for a matching IP address. If not found, it queries the DNS root servers to find the authoritative name servers for the ".com" top-level domain.
+
+    The DNS resolver then queries the authoritative name servers for the IP address of www.foobar.com.
+
+    The authoritative name servers respond with the IP address associated with www.foobar.com.
+
+    The DNS resolver caches the IP address for future use and sends it back to the user's device.
+
+    The user's device establishes a TCP/IP connection with the server hosting www.foobar.com using the obtained IP address.
+
+    The server receives the incoming request on port 80 (HTTP) or port 443 (HTTPS) and processes it.
+
+    If the request is on port 80, the server responds with an HTTP redirect (status code 301 or 302) to the HTTPS version of the website (https://www.foobar.com).
+
+    If the request is on port 443, the server proceeds to handle the HTTPS request.
+
+    The server decrypts the HTTPS request using its SSL/TLS certificate, ensuring secure communication between the user's device and the server.
+
+    The server processes the request, which may involve retrieving HTML, CSS, JavaScript files, and any other required assets from the server's file system or a connected database.
+
+    The server generates an HTML response and includes any dynamic content based on the requested URL or user-specific data.
+
+    The server sends the response back to the user's device over the established TCP/IP connection.
+
+    The user's device receives the response and renders the web page in the web browser, displaying the website's content and assets.
+
+    The user can interact with the website by clicking links, submitting forms, or performing other actions, which results in subsequent requests being sent to the server for processing.
