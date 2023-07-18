@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
-# installs nginx and configures it on a remote server
 
-sudo apt-get -y update
-sudo apt-get -y install nginx -y
-sudo ufw allow 'Nginx HTTP'
-sudo sh -c "echo 'Hello World!' > /var/www/html/index.nginx-debian.html"
-sudo service nginx start
+# Update the package index
+sudo apt update
+
+# Install Nginx
+sudo apt install -y nginx
+
+# Configure Nginx to listen on port 80
+sudo sed -i 's/listen\s*80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
+
+# Restart Nginx without using systemctl
+sudo service nginx restart
+
+# Create a simple HTML page with the content "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Script execution completed
+echo "Nginx installed and configured. The server is now serving 'Hello World!' at the root."
+
+# Note: The script does not need to be run with "./1-install_nginx_web_server > /dev/null 2>&1".
+# Just running it with "bash 1-install_nginx_web_server.sh" will be sufficient.
