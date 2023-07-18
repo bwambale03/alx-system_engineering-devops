@@ -18,5 +18,5 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 # Script execution completed
 echo "Nginx installed and configured. The server is now serving 'Hello World!' at the root."
 
-# Note: The script does not need to be run with "./1-install_nginx_web_server > /dev/null 2>&1".
+# Note The script does not need to be run with "./1-install_nginx_web_server > /dev/null 2>&1".
 # Just running it with "bash 1-install_nginx_web_server.sh" will be sufficient.
