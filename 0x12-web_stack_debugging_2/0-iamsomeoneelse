@@ -2,7 +2,7 @@
 
 # Check if an argument (username) is provided
 if [ -z "$1" ]; then
-  echo "Usage: $0 root"
+  echo "Usage: $0 whoami"
   exit 1
 fi
 
