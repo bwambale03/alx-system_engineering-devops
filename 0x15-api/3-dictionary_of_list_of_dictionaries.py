@@ -3,10 +3,12 @@
 import json
 import requests
 
+
 def get_employee_todo_list(employee_id):
     url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
     response = requests.get(url)
     return response.json()
+
 
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
