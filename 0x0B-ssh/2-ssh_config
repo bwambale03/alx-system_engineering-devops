@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-Host 172.17.0.23
+Host *
   IdentityFile ~/.ssh/school
-  PreferredAuthentications publickey
   PasswordAuthentication no
