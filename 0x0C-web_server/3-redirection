@@ -54,3 +54,7 @@ fi
 
 # Restart Nginx service
 service nginx restart
+
+# Test Nginx configuration and reload
+sudo nginx -t
+sudo systemctl reload nginx
