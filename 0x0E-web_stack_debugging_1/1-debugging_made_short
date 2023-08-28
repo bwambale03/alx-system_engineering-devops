@@ -2,4 +2,4 @@
 # a bash script similar to 0-nginx_likes_port_80 but made more precise
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
-kill "(pgrep 'nginx' | head -1)"
+kill "$(pgrep 'nginx' | head -1)"
