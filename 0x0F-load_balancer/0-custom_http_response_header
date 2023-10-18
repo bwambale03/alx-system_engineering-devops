@@ -2,7 +2,6 @@
 # configure web-02 to be identical to web-01
 # The name of the custom HTTP header must be X-Served-By
 # The value of the custom HTTP header must be the hostname of the server Nginx is running on
-#!/usr/bin/env bash
 
 # Update package repositories
 sudo apt-get -y update
@@ -11,7 +10,7 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 
 # Allow Nginx HTTP traffic
-sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx Full'
 
 # Create necessary directories and set permissions
 sudo mkdir -p /var/www/html /var/www/error
