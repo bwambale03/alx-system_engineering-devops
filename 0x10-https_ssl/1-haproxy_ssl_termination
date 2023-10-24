@@ -33,24 +33,20 @@ defaults
 frontend www
     bind *:80
     bind *:443 ssl crt /etc/ssl/www.afriteksolutions.tech/www.afriteksolutions.tech.pem
+    # redirect if HTTPS aint used 
     redirect scheme https code 301 if !{ ssl_fc }
 
-    acl is_web01 hdr(host) -i web-01.afriteksolutions.tech
-    acl is_web02 hdr(host) -i web-02.afriteksolutions.tech
-    acl is_lb01 hdr(host) -i lb-01.afriteksolutions.tech
+    # acl is_web01 hdr(host) -i web-01.afriteksolutions.tech
+    #acl is_web02 hdr(host) -i web-02.afriteksolutions.tech
+    #acl is_lb01 hdr(host) -i lb-01.afriteksolutions.tech
 
-    use_backend web01 if is_web01
-    use_backend web02 if is_web02
-    use_backend lb01 if is_lb01
+    #use_backend web01 if is_web01
+    #use_backend web02 if is_web02
+    #use_backend lb01 if is_lb01
+    default_backend web-servers
 
-backend web01
+backend web-servers
     balance roundrobin
     server web-01 54.157.152.10:80 check
-
-backend web02
-    balance roundrobin
     server web-02 54.157.160.52:80 check
-
-backend lb01
-    balance roundrobin
     server lb-01 100.25.34.226:80 check
