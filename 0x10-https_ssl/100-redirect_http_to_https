@@ -7,8 +7,12 @@ global
     user haproxy
     group haproxy
     daemon
+
+    # Default SSL material locations
     ca-base /etc/ssl/certs
     crt-base /etc/ssl/private
+
+    # See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
     ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
     ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
     ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
@@ -30,27 +34,32 @@ defaults
     errorfile 503 /etc/haproxy/errors/503.http
     errorfile 504 /etc/haproxy/errors/504.http
 
-frontend www
+frontend www-frontend
     bind *:80
-    bind *:443 ssl crt /etc/ssl/www.afriteksolutions.tech/www.afriteksolutions.tech.pem
-    redirect scheme https code 301 if !{ ssl_fc }
+    bind *:443 ssl crt /etc/letsencrypt/live/www.afriteksolutions.tech/fullchain.pem
 
+    acl is_www hdr(host) -i www.afriteksolutions.tech
+    acl is_lb01 hdr(host) -i lb-01.afriteksolutions.tech
     acl is_web01 hdr(host) -i web-01.afriteksolutions.tech
     acl is_web02 hdr(host) -i web-02.afriteksolutions.tech
-    acl is_lb01 hdr(host) -i lb-01.afriteksolutions.tech
 
-    use_backend web01 if is_web01
-    use_backend web02 if is_web02
-    use_backend lb01 if is_lb01
+    use_backend www-backend if is_www
+    use_backend lb01-backend if is_lb01
+    use_backend web01-backend if is_web01
+    use_backend web02-backend if is_web02
 
-backend web01
+backend www-backend
     balance roundrobin
-    server web-01 54.157.152.10:80 check
+    server www-server 100.25.34.226:80 check
 
-backend web02
+backend lb01-backend
     balance roundrobin
-    server web-02 54.157.160.52:80 check
+    server lb01-server 100.25.34.226:80 check
 
-backend lb01
+backend web01-backend
     balance roundrobin
-    server lb-01 100.25.34.226:80 check
+    server web01-server 54.157.152.10:80 check
+
+backend web02-backend
+    balance roundrobin
+    server web02-server 54.157.160.52:80 check
