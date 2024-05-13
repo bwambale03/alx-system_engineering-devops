@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 Host *
-  IdentityFile ~/.ssh/school
+  IdentityFile ~/.ssh/web-02
   PasswordAuthentication no
