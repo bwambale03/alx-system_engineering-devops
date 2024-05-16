@@ -11,19 +11,18 @@ config_404=\
 "server {
         listen 80 default_server;
         listen [::]:80 default_server;
-               root /var/www/html;
+        root /var/www/html;
         index index.html index.htm index.nginx-debian.html;
         server_name _;
         location / {
                 try_files \$uri \$uri/ =404;
         }
         error_page 404 /404.html;
-        location  /404.html {
+        location = /404.html {
             internal;
         }
-        
-        if (\$request_filename ~ redirect_me){
-            rewrite ^ https://bard.google.com/ permanent;
+        location = /redirect_me {
+            return 301 https://bard.google.com/;
         }
 }
 "
@@ -36,3 +35,4 @@ then
 else
     service nginx restart
 fi;
+
